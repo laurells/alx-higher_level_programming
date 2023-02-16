@@ -1,0 +1,1 @@
+This is a repo that will conatin svereal different directories. Each directory will contain several files each containing codes aimed at solving tasks. The tasks are assigned on my alx higher level programming assignments
