@@ -1,10 +1,12 @@
 #!/usr/bin/node
+// Basic print with Javascript
 
-// script to print strings using a loop
+const array = ['C is fun',
+  'Python is cool',
+  'Javascript is amazing'];
+let i = 0;
 
-let i;
-const myString = ['C is fun', 'Python is cool', 'JavaScript is amazing'];
-
-for (i = 0; i < 3; i++) {
-  console.log(myString[i]);
+while (array[i]) {
+  console.log(array[i]);
+  i++;
 }
