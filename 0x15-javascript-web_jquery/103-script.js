@@ -1,26 +1,18 @@
-function postLang () {
-  const lang = $('INPUT#language_code').val();
-  $.ajax({
-    type: 'POST',
-    url: 'https://fourtonfish.com/hellosalut/?lang=' + lang,
-    success: (translation) => {
-      $('DIV#hello').text(translation.hello);
-    },
-    error: () => {
-      console.log('Error loading orders');
-    }
-  });
-}
+$(document).ready(function () {
+	$("INPUT#btn_translate").click(fetchTranslation);
+	$("INPUT#language_code").keyup(function (event) {
+		if (event.keyCode === 13) {
+			fetchTranslation();
+		}
+	});
 
-window.onload = () => {
-  $('INPUT#btn_translate').focus(() => {
-    $('INPUT#btn_translate').keypress((key) => {
-      if (key.which === 13) {
-        postLang();
-      }
-    });
-    $('INPUT#btn_translate').click(() => {
-      postLang();
-    });
-  });
-};
+	function fetchTranslation() {
+		const language_code = $("INPUT#language_code").val();
+		$.getJSON(
+			`https://fourtonfish.com/hellosalut/hello/?lang=${language_code}`,
+			function (data) {
+				$("#hello").text(data.hello);
+			}
+		);
+	}
+});

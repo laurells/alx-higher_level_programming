@@ -1,57 +1,83 @@
-"""a class Square that defines a square by a private instance attributes size and position and also by public instance methods area and my_print"""
+#!/usr/bin/python3
+"""My square module"""
 
-class Square():
-    """defined square"""
+
+class Square:
+    """defines a square"""
 
     def __init__(self, size=0, position=(0, 0)):
-        """sets the required attributes for the square
+        """Create a Square
         Args:
-            size(int): the size of the square edge
-            position(tuple): the coordinates of the square"""
-
+            size: length of a side of Square
+            position: where the square is (coordinates)
+        """
         self.size = size
         self.position = position
 
+    def __str__(self):
+        self.my_print()
+
     @property
     def size(self):
-        """get or set the square size"""
+        """"The propery of size as the len of a side of Square
+        Raises:
+            TypeError: if size != int
+            ValueError: if size < 0
+        """
         return self.__size
 
     @size.setter
     def size(self, value):
-        if type(value) is int:
-            if value >= 0:
-                self.__size = value
-            else:
-                raise ValueError("size must be >= 0")
-        else:
-            raise TypeError("size must be integer")
+        if not isinstance(value, int):
+            raise TypeError('size must be an integer')
+        if value < 0:
+            raise ValueError('size must be >= 0')
+        self.__size = value
 
-        @property
-        def position(self):
-            """get or set the position of the square"""
-            return self.__position
+    @property
+    def position(self):
+        """property of the coordinates of this Square
+        Raises:
+            TypeError: if value != a tuple of 2 integers < 0
+        """
+        return self.__position
 
-        @position.setter
-        def position(self, value):
-            if type(value) is tuple and len(value) is 2 and \
-                type(value[0]) is int and type(value[1]) is int and \
-                    value[0] >= 0 and value[1] >= 0:
-                    self.__position = value
-            else:
-                raise TypeError("posiiton must be tuple of 2 positive integers")
+    @position.setter
+    def position(self, value):
+        """set the position of this Square
+        Args: value as a tuple of two positive integers
+        Raises:
+            TypeError: if value is not a tuple or any int in tuple < 0
+        """
+        if not isinstance(value, tuple):
+            raise TypeError('position must be a tuple of 2 positive integers')
+        if len(value) != 2:
+            raise TypeError('position must be a tuple of 2 positive integers')
+        if len([i for i in value if isinstance(i, int) and i >= 0]) != 2:
+            raise TypeError('position must be a tuple of 2 positive integers')
+        self.__position = value
 
-        def area(self):
-            """returns the current area square"""
-            return self.__size ** 2
+    def area(self):
+        """Get the area of a Square
+        Returns: The size squared
+        """
+        return self.__size * self.__size
 
-        def my_print(self):
-            """prints the square with the # charatcer ti stdout"""
-            if self.__size > 0:
-                for y in range(self.__position[1]):
-                    print()
-                for x in range(self.__size):
-                    print(' ' * self.__position[0], end='')
-                    print('#' * self.__size)
-            else:
-                print()
+    def pos_print(self):
+        """returns the position in spaces"""
+        pos = ""
+        if self.size == 0:
+            return "\n"
+        for w in range(self.position[1]):
+            pos += "\n"
+        for w in range(self.size):
+            for i in range(self.position[0]):
+                pos += " "
+            for j in range(self.size):
+                pos += "#"
+            pos += "\n"
+        return pos
+
+    def my_print(self):
+        """print the square in position"""
+        print(self.pos_print(), end='')

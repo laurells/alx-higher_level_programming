@@ -1,3 +1,2 @@
-# 0x12. Javascript - Warm up
+0x12. JavaScript - Warm up
 
-An introduction to the basic principles and syntax of scripting with Javascript.

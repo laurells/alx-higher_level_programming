@@ -1,15 +1,11 @@
 #!/usr/bin/node
-// Basic print with Javascript
-
-const size = process.argv[2];
-
-if (size && parseInt(size)) {
-  let i = 0;
-  while (i < size) {
-    const row = 'X'.repeat(size);
-    console.log(row);
-    i++;
-  }
-} else {
+const size = Math.floor(Number(process.argv[2]));
+if (isNaN(size)) {
   console.log('Missing size');
+} else {
+  for (let r = 0; r < size; r++) {
+    let row = '';
+    for (let c = 0; c < size; c++) row += 'X';
+    console.log(row);
+  }
 }

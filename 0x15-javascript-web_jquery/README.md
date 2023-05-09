@@ -1,2 +1,1 @@
-# 0x15. Javascript - Web JQuery
-An introduction to JQuery and AJAX.
+# Solutions to tasks on JavaScript - Web jQuery

@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-tmp = ""
-for i in reversed(range(97, 123)):
-    if (i % 2) == 0:
-        tmp += chr(i)
-    else:
-        tmp += chr(i-32)
-print("{}".format(tmp), end="")
+
+i = 0
+for c in range(ord('z'), ord('a') - 1, -1):
+    print("{}".format(chr(c - i)), end="")
+    i = 32 if i == 0 else 0

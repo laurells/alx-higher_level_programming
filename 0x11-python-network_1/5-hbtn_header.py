@@ -1,13 +1,13 @@
 #!/usr/bin/python3
-"""Retrieve header with requests module
+"""Displays the X-Request-Id header variable of a request to a given URL.
+Usage: ./5-hbtn_header.py <URL>
 """
-
+import sys
 import requests
-from sys import argv
 
 
-if __name__ == '__main__':
-    url = argv[1]
+if __name__ == "__main__":
+    url = sys.argv[1]
+
     r = requests.get(url)
-    r = r.headers
-    print(r.get('X-Request-Id'))
+    print(r.headers.get("X-Request-Id"))
